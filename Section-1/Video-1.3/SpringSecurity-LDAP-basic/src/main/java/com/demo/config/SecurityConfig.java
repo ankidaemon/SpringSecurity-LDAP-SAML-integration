@@ -24,7 +24,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.contextSource()
 		.url("ldap://packt.com:389/dc=packt,dc=com")
 		//.url("ldaps://packt.com:636/dc=packt,dc=com")  //For TLS 
-		
+		.managerDn("managerDN")
+		.managerPassword("managerPassword")
 		.and()
 			.userDnPatterns("uid={0},ou=finance")
 			.groupSearchBase("ou=groups");
