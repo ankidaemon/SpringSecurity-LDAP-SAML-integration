@@ -30,10 +30,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth
 		.ldapAuthentication()
 		.contextSource()
-		//.url("ldap://packt.com:389/dc=packt,dc=com")
-		//.url("ldaps://packt.com:636/dc=packt,dc=com")
-		.root("dc=packt,dc=com")
-		.ldif("classpath:packt.ldif")
+		.url("ldap://packt.com:389/dc=packt,dc=com")
+		//.url("ldaps://packt.com:636/dc=packt,dc=com")  //For TLS 
+		
 		.and()
 			.userDnPatterns("uid={0},ou=finance")
 			.groupSearchBase("ou=groups");
@@ -48,8 +47,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests()
-		.regexMatchers("/chief/.*").hasRole("ADMIN")
-		.regexMatchers("/agent/.*").access("hasRole('USER')")
 		.anyRequest()
 				.authenticated()
 				.and().httpBasic()	
@@ -57,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.formLogin().loginPage("/login").permitAll();
 		http.logout().logoutSuccessUrl("/");
-		http.exceptionHandling().accessDeniedPage("/accessDenied");
+		
 	}
 
 }
