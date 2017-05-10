@@ -41,8 +41,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		configurer.enable();
 	}
 	
-	/*
-	 * Section 2 - Video 2.4 - Added to customize login page*/
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/login").setViewName("login");
