@@ -66,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.anyRequest()
 				.authenticated()
 				.and().httpBasic()	
-				.and().requiresChannel().anyRequest().requiresInsecure();
+				.and().requiresChannel().anyRequest().requiresSecure();
 
 		http.formLogin().loginPage("/login").permitAll();
 		http.logout().logoutSuccessUrl("/");
