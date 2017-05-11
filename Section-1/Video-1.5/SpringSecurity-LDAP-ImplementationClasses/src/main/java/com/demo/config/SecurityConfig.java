@@ -47,9 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				new DefaultSpringSecurityContextSource("ldap://packt.com:389/");
 		
 		contextSource.setBase("dc=packt,dc=com");
-		contextSource.setUserDn("managerDN");
-		contextSource.setPassword("managerDN-password");
-		
+				
 		PasswordComparisonAuthenticator authenticator=new PasswordComparisonAuthenticator(contextSource);
 		authenticator.setUserDnPatterns(new String[]{"uid={0},ou=finance"});
 		
