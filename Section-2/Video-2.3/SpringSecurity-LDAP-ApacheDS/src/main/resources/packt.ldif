@@ -25,12 +25,12 @@ uid: jack.reacher
 userPassword: localpassword
 
 dn: cn=user,ou=groups,dc=packt,dc=com
-objectclass: groupOfNames
+objectclass: groupOfUniqueNames
 cn: user
-member: uid=john.watson,ou=finance,dc=packt,dc=com
-member: uid=jack.reacher,ou=finance,dc=packt,dc=com
+uniqueMember: uid=john.watson,ou=finance,dc=packt,dc=com
+uniqueMember: uid=jack.reacher,ou=finance,dc=packt,dc=com
 
 dn: cn=admin,ou=groups,dc=packt,dc=com
-objectclass: groupOfNames
+objectclass: groupOfUniqueNames
 cn: admin
-member: uid=john.watson,ou=finance,dc=packt,dc=com
+uniqueMember: uid=john.watson,ou=finance,dc=packt,dc=com
