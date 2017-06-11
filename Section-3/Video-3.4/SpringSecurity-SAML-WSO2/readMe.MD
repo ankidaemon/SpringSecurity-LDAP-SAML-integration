@@ -1,1 +1,1 @@
-### SpringSecurity-LDAP-ApacheDS
+### SpringSecurity-SAML-WSO2
