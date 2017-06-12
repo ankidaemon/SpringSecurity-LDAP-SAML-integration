@@ -28,7 +28,6 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @Configuration
 @EnableWebSecurity
 @ImportResource({"classpath:securityContext.xml"})
-@ComponentScan(basePackages = "com.demo.config")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
