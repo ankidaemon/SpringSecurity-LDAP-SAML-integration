@@ -47,18 +47,44 @@
 		<property name="idpSelectionPath" value="/WEB-INF/login.jsp" />
 	</bean>
 
-	<bean id="metadataGeneratorFilter"
-		class="org.springframework.security.saml.metadata.MetadataGeneratorFilter">
+	<!-- Automatic SP MetaData generator -->
+	<bean id="metadataGeneratorFilter" class="org.springframework.security.saml.metadata.MetadataGeneratorFilter">
 		<constructor-arg>
 			<bean class="org.springframework.security.saml.metadata.MetadataGenerator">
 				<property name="extendedMetadata">
 					<bean class="org.springframework.security.saml.metadata.ExtendedMetadata">
-						<property name="idpDiscoveryEnabled" value="true" />
+						<property name="idpDiscoveryEnabled" value="false" />
+						<!-- <property name="idpDiscoveryEnabled" value="true" /> -->
+						<!-- <property name="idpDiscoveryURL" value=""/> Remote discovery -->
+                        <!-- <property name="idpDiscoveryResponseURL" value=""/>  Remote Discovery -->
 					</bean>
 				</property>
 			</bean>
 		</constructor-arg>
 	</bean>
+	
+	<!-- PreConfigured SP MetaData -->
+	<!-- 
+	<bean class="org.springframework.security.saml.metadata.ExtendedMetadataDelegate">
+	<constructor-arg>
+		<bean class="org.opensaml.saml2.metadata.provider.ResourceBackedMetadataProvider"> 
+			<constructor-arg>
+				<bean class="java.util.Timer"/>
+			</constructor-arg>
+			<constructor-arg>
+				<bean class="org.opensaml.util.resource.ClasspathResource">
+					<constructor-arg value="/metadata/sp_metadata.xml"/>
+				</bean>
+			</constructor-arg>
+			<property name="parserPool" ref="parserPool"/>
+		</bean>
+	</constructor-arg>
+	<constructor-arg>
+		<bean class="org.springframework.security.saml.metadata.ExtendedMetadata">
+		</bean>
+	</constructor-arg>
+	</bean>
+	 -->
 
 	<bean id="metadataDisplayFilter" class="org.springframework.security.saml.metadata.MetadataDisplayFilter" />
 
@@ -89,6 +115,8 @@
 				</bean>
 			</list>
 		</constructor-arg>
+		<!-- Default IDP -->
+		<property name="defaultIDP" value="localhost_WSO2"/>
 	</bean>
 
 	<bean id="contextProvider" class="org.springframework.security.saml.context.SAMLContextProviderImpl" />

@@ -54,6 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests()
         .antMatchers("/saml/**").permitAll()
+        .antMatchers("/logout.jsp").permitAll()
 		.anyRequest()
 				.authenticated()
 				.and().httpBasic().authenticationEntryPoint(samlEntryPoint())
