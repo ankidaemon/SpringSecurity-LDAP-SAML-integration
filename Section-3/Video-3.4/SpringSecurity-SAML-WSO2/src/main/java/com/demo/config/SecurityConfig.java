@@ -53,16 +53,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests()
-        .antMatchers("/saml/**").permitAll()
-        .antMatchers("/logout.jsp").permitAll()
+        	.antMatchers("/logout.jsp").permitAll()
+       		.antMatchers("/saml/**").permitAll()
 		.anyRequest()
 				.authenticated()
 				.and().httpBasic().authenticationEntryPoint(samlEntryPoint())
 				.and().requiresChannel().anyRequest().requiresInsecure();
 		
 		http
-        .addFilterBefore(metadataGeneratorFilter, ChannelProcessingFilter.class)
-        .addFilterAfter(samlFilter, BasicAuthenticationFilter.class);
+        	.addFilterBefore(metadataGeneratorFilter, ChannelProcessingFilter.class)
+        	.addFilterAfter(samlFilter, BasicAuthenticationFilter.class);
 		
 		http.csrf().disable();
 				
@@ -74,8 +74,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		SAMLEntryPoint samlEntryPoint = new SAMLEntryPoint();
 		WebSSOProfileOptions webSSOProfileOptions=new WebSSOProfileOptions();
 		webSSOProfileOptions.setIncludeScoping(false);
-        samlEntryPoint.setDefaultProfileOptions(webSSOProfileOptions);
-        return samlEntryPoint;
+        	samlEntryPoint.setDefaultProfileOptions(webSSOProfileOptions);
+        	return samlEntryPoint;
 	}
 	
 	@Bean
