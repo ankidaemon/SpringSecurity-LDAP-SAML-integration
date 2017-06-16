@@ -74,8 +74,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		SAMLEntryPoint samlEntryPoint = new SAMLEntryPoint();
 		WebSSOProfileOptions webSSOProfileOptions=new WebSSOProfileOptions();
 		webSSOProfileOptions.setIncludeScoping(false);
-        	samlEntryPoint.setDefaultProfileOptions(webSSOProfileOptions);
-        	return samlEntryPoint;
+		webSSOProfileOptions.setBinding("urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST");
+        samlEntryPoint.setDefaultProfileOptions(webSSOProfileOptions);
+        return samlEntryPoint;
 	}
 	
 	@Bean
