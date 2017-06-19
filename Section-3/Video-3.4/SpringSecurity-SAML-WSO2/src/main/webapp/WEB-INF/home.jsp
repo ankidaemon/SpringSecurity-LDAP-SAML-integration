@@ -15,12 +15,12 @@
 	<%
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         SAMLCredential credential = (SAMLCredential) authentication.getCredentials();
-        pageContext.setAttribute("authentication", authentication);
         pageContext.setAttribute("credential", credential);
+        pageContext.setAttribute("assertion", XMLHelper.nodeToString(SAMLUtil.marshallMessage(credential.getAuthenticationAssertion())));
      %>
-	 <c:if test="${authentication.name != 'anonymousUser'}"> 
+	 <c:if test="${credential.nameID.value != 'anonymousUser'}"> 
 		<h2 style="display:inline-block;">
-		 Welcome : <c:out value="${authentication.name}"/>
+		 Welcome : <c:out value="${credential.nameID.value}"/>
 		</h2>	
 		<div style="display:inline-block;">
 		<form class="left" action="<c:url value="/saml/logout"/>" method="get">
@@ -30,11 +30,7 @@
               <input type="hidden" name="local" value="true"/>
               <input type="submit" value="Local Logout" class="button"/>
         </form>
-		</div>			
- 		
-		<p>Your Session id is: "${pageContext.request.session.id}"</p>
-
-	</c:if>
-
+		</div>		
+ 	</c:if>
 </body>
 </html>

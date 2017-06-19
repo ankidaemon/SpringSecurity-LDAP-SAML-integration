@@ -51,9 +51,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
+		// TODO Auto-generated method stub
 		http.authorizeRequests()
         	.antMatchers("/logout.jsp").permitAll()
+        	.antMatchers("/loginFailed.jsp").permitAll()
        		.antMatchers("/saml/**").permitAll()
 		.anyRequest()
 				.authenticated()
@@ -81,6 +82,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	public SavedRequestAwareAuthenticationSuccessHandler successRedirectHandler(){
+		// TODO Auto-generated method stub
 		SavedRequestAwareAuthenticationSuccessHandler successHandler=new SavedRequestAwareAuthenticationSuccessHandler();
 		successHandler.setDefaultTargetUrl("/");
 		return successHandler;
@@ -88,6 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	public SimpleUrlAuthenticationFailureHandler failureRedirectHandler(){
+		// TODO Auto-generated method stub
 		SimpleUrlAuthenticationFailureHandler failureHandler = new SimpleUrlAuthenticationFailureHandler();
 		failureHandler.setUseForward(true);
 		failureHandler.setDefaultFailureUrl("/loginFailed.jsp");
