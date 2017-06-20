@@ -13,8 +13,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.demo.config.SecurityConfig;
+
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
+@ContextConfiguration(classes = SecurityConfig.class)
 @WebAppConfiguration
 @Ignore //Ignoring because we haven't added any @Test method
 public class SecurityMockMvc {
