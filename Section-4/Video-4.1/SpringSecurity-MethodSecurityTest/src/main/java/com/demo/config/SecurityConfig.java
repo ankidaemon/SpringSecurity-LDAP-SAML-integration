@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests()
 			//	.regexMatchers("/chief/.*").hasRole("CHIEF")
-			//	.regexMatchers("/agent/.*").access("hasRole('AGENT') and principal.name='agent'")
+			//	.regexMatchers("/agent/.*").access("hasRole('AGENT')")
 				.anyRequest().authenticated()
 				.and().httpBasic()
 				.and().requiresChannel().anyRequest().requiresInsecure();
