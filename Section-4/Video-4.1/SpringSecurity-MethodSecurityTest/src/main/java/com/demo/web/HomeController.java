@@ -17,21 +17,19 @@ import com.demo.to.UserTo;
 @Controller
 public class HomeController {
      
-	@Secured("IS_AUTHENTICATED_ANONYMOUSLY")
-	//@PreAuthorize("isAnonymous()")
     @RequestMapping(value="/", method = RequestMethod.GET)
     public ModelAndView visitHome() {
     	ModelAndView mav = new ModelAndView("home");
         return mav;
     }
 	
-	@Secured("authenticated")
+    @Secured("authenticated")
     @RequestMapping(value="/customlogout", method = RequestMethod.POST)
     public void logOut(){
     }
     
     @Secured("ROLE_CHIEF")
-	//@PreAuthorize("hasRole('AGENT')")
+  //@PreAuthorize("hasRole('AGENT')")
     @RequestMapping(value = "/chief/updateProfile", method = RequestMethod.GET)
 	public ModelAndView updateChiefPage() {
 		ModelAndView mav = new ModelAndView();
@@ -47,7 +45,7 @@ public class HomeController {
 		return mav;
 	}
     
-	@PreAuthorize("principal.username=='agent'")
+    @PreAuthorize("principal.username=='agent'")
     @RequestMapping(value = "/withUserNameTest", method = RequestMethod.GET)
 	public ModelAndView withUserNameTest(UserTo userTo) {
     	ModelAndView mav = new ModelAndView("home");
@@ -61,8 +59,8 @@ public class HomeController {
         return mav;
     }
     
-	public void withUserDetailTest() {
+    public void withUserDetailTest() {
 		// TODO Auto-generated method stub
-		System.out.println("Called - withUserDetailTest");
-	}
+	System.out.println("Called - withUserDetailTest");
+    }
 }
