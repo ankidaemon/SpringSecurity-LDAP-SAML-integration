@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Spring Security-Ldap Basic</title>
+<title>Spring Security-JaaS</title>
 </head>
 <body>
 	<c:if test="${pageContext.request.userPrincipal.name != null}">
 		<h2 style="display:inline-block;">
-		Welcome : ${pageContext.request.userPrincipal.name} | <%-- <a href="${pageContext.request.contextPath}/logout"> Logout</a> --%>
+		Welcome : ${pageContext.request.userPrincipal.name} 
 		</h2>	
 		<div style="display:inline-block;">
 		<c:url value="/logout" var="logOutUrl"/>
@@ -18,9 +18,8 @@
             <input type="submit" value="log Out" />
     	</form:form>
 		</div>			
- 		
-		<p>Your Session id is: "${pageContext.request.session.id}"</p>
-
+		<br/>
+		<br>
 		<a href="${pageContext.request.contextPath}/chief/updateProfile">Only Chief Update Profile</a>
 	</c:if>
 

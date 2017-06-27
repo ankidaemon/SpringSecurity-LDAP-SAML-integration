@@ -30,41 +30,39 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	CustomAuthorityGranter customAuthorityGranter;
-	
+
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.authenticationProvider(jaasAuthProvider());
 	}
 
 	@Bean
-	DefaultJaasAuthenticationProvider jaasAuthProvider(){
-		AppConfigurationEntry appConfig=new AppConfigurationEntry("com.demo.loginmodule.CustomLoginModule",AppConfigurationEntry.LoginModuleControlFlag.REQUIRED,new HashMap());
-		Map<String,AppConfigurationEntry[]> m=new HashMap<>();
-		m.put("SPRINGSECURITY", new AppConfigurationEntry[]{appConfig});
+	DefaultJaasAuthenticationProvider jaasAuthProvider() {
+		AppConfigurationEntry appConfig = new AppConfigurationEntry("com.demo.loginmodule.CustomLoginModule",
+				AppConfigurationEntry.LoginModuleControlFlag.REQUIRED, new HashMap());
 		
-		InMemoryConfiguration memoryConfig=new InMemoryConfiguration(m);
-		
-		DefaultJaasAuthenticationProvider def=new DefaultJaasAuthenticationProvider();
+		InMemoryConfiguration memoryConfig = new InMemoryConfiguration(new AppConfigurationEntry[] { appConfig });
+
+		DefaultJaasAuthenticationProvider def = new DefaultJaasAuthenticationProvider();
 		def.setConfiguration(memoryConfig);
-		def.setAuthorityGranters(new AuthorityGranter[]{customAuthorityGranter});
+		def.setAuthorityGranters(new AuthorityGranter[] { customAuthorityGranter });
 		return def;
 	}
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests()
 		.regexMatchers("/chief/.*").hasRole("CHIEF")
 		.regexMatchers("/agent/.*").access("hasRole('AGENT')")
-		.anyRequest()
-				.authenticated()
-				.and().httpBasic()	
-				.and().requiresChannel().anyRequest().requiresInsecure();
+				.anyRequest().authenticated().and().httpBasic().and().requiresChannel()
+				.anyRequest().requiresInsecure();
 
 		http.formLogin().loginPage("/login").permitAll();
 		http.logout().logoutSuccessUrl("/");
 		http.exceptionHandling().accessDeniedPage("/accessDenied");
 		
+
 	}
 
 }

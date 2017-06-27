@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class CustomAuthorityGranter implements AuthorityGranter {
-
+	
 	@Override
 	public Set<String> grant(Principal principal) {
 		// TODO Auto-generated method stub
