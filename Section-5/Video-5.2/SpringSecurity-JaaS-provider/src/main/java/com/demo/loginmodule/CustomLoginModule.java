@@ -14,8 +14,6 @@ import javax.security.auth.callback.UnsupportedCallbackException;
 import javax.security.auth.login.LoginException;
 import javax.security.auth.spi.LoginModule;
 
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-
 /**
  * @author ankidaemon
  *
@@ -81,6 +79,10 @@ public class CustomLoginModule implements LoginModule {
 	}
 
 	private static class UsernamePrincipal implements Principal, Serializable {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -3727445452272878337L;
 		private final String username;
 
 		public UsernamePrincipal(String username) {
@@ -95,6 +97,5 @@ public class CustomLoginModule implements LoginModule {
 			return "Principal [name=" + getName() + "]";
 		}
 
-		private static final long serialVersionUID = 8049681145355488137L;
 	}
 }
