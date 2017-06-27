@@ -29,8 +29,8 @@ public class CustomLoginModule implements LoginModule {
 			Map<String, ?> options) {
 		// TODO Auto-generated method stub
 		this.subject = subject;
-		NameCallback nameCallback = new NameCallback("prompt");
-		PasswordCallback passwordCallback = new PasswordCallback("prompt", false);
+		NameCallback nameCallback = new NameCallback("Username:");
+		PasswordCallback passwordCallback = new PasswordCallback("password:", false);
 		try {
 			callbackHandler.handle(new Callback[] { nameCallback, passwordCallback });
 		} catch (IOException | UnsupportedCallbackException e) {

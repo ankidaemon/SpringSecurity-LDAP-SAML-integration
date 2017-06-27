@@ -1,7 +1,6 @@
 package com.demo.config;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.security.auth.login.AppConfigurationEntry;
 
