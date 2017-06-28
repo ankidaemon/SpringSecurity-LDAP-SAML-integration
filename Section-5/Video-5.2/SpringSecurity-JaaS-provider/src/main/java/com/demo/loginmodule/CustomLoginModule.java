@@ -69,13 +69,13 @@ public class CustomLoginModule implements LoginModule {
 	@Override
 	public boolean abort() throws LoginException {
 		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 
 	@Override
 	public boolean logout() throws LoginException {
 		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 
 	private static class UsernamePrincipal implements Principal, Serializable {
