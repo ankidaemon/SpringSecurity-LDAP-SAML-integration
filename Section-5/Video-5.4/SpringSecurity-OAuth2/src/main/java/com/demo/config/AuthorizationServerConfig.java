@@ -54,13 +54,21 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-		endpoints.tokenStore(tokenStore).userApprovalHandler(handler)
-				.authenticationManager(authManager);
+		endpoints.tokenStore(tokenStore).userApprovalHandler(handler);
+		
+		//below will be used for password grant.
+		//endpoints.authenticationManager(authManager);
+		
+		//Customizing the endpoint path here. Remember to secure customized paths
+		//endpoints.pathMapping("/oauth/authorize", "your custom path");
 	}
 
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
 		oauthServer.realm(REALM+"/client");
+		
+		//Using authorization server over ssl.
+		//oauthServer.sslOnly();
 	}
 
 }

@@ -45,15 +45,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.csrf().disable()
-	  	.authorizeRequests()
-	  	.antMatchers("/oauth/token").hasRole("USER");
+	  	.authorizeRequests().anyRequest().authenticated();
 		
 		http.formLogin()
 		.loginPage("/login").permitAll().and()
 		.logout().permitAll();
 		
 		http.httpBasic();
-		http.requiresChannel().anyRequest().requiresInsecure();
 	}
 	
 	@Bean
@@ -71,12 +69,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return handler;
 	}
 	
-	@Bean
-	@Autowired
-	public ApprovalStore approvalStore(TokenStore tokenStore) throws Exception {
-		TokenApprovalStore store = new TokenApprovalStore();
-		store.setTokenStore(tokenStore);
-		return store;
-	}
-
 }
