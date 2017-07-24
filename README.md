@@ -13,7 +13,7 @@
 * Spring Security OAuth2 Authorization and Resource Server
 
 
-#### Bonus  
+#### Bonus - Spring Security Testing Framework
         
 * SpringSecurity-MethodSecurityTest
 
