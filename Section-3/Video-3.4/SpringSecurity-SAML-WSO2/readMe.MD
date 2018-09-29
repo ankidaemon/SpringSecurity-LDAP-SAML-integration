@@ -7,13 +7,13 @@
 3. Go to "Resident" under "Identity Provider"
 4. Change the `Home Realm Identifier` from "localhost" to `localhost_WSO2` ( this can be any name as long as you keep same `entityID` in `ws02.xml` file under metadata folder of the project. )
 5. Verify in same tab : Inbound Authentication Configuration => SAML2 Web SSO Configuration => `Identity Provider Entity Id` must also be same i.e. `localhost_WSO2`
-6. Click on "Download SAML Metadata", rename the file to wso2.xml and replace `ws02.xml` file under metadata folder of the project.
+6. Click on "Download SAML Metadata", rename the file to wso2.xml and replace `wso2.xml` file under metadata folder of the project.
 
 > Part#2 - Debugging
 1. Go to server directory  => edit /repository/conf/log4j.properties 
     Enable 
-    log4j.logger.org.wso2.carbon.identity.sso.saml=DEBUG
-    log4j.logger.org.wso2.carbon.identity.sso.agent=DEBUG
+    `log4j.logger.org.wso2.carbon.identity.sso.saml=DEBUG`
+    `log4j.logger.org.wso2.carbon.identity.sso.agent=DEBUG`
     logs will be shown in terminal/command-prompt
 
 > Part#3 - Keystore
@@ -53,7 +53,7 @@
 
 >  `keytool -genkeypair -alias mycustomkeys -keypass password -keystore myKeystore.jks`
 
-7. Extract public certificate from ws02-keystore. Alias/password/keystore-name from Step-1
+7. Export public certificate from ws02-keystore. Alias/password/keystore-name from Step-1
 >  `keytool -export -keystore wso2carbon.jks -rfc -alias wso2carbon -file pub_IDP.cer`
 
 8. Import generated pub_IDP.cer into myKeystore.jks
@@ -61,7 +61,7 @@
 
 9. Delete pub_IDP.cer
 
-10. Extract public certificate from myKeystore.jks . Alias/password/keystore-name from step-6
+10. Export public certificate from myKeystore.jks . Alias/password/keystore-name from step-6
 >  `keytool -export -keystore myKeystore.jks -rfc -alias mycustomkeys -file pub_SP.cer`
 
 11. Import generated pub_SP.cer into wso2carbon.jks
