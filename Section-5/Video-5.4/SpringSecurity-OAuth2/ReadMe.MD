@@ -42,7 +42,7 @@ http://localhost:8080/SpringSecurity-OAuth2/chief/internationCriminals?access_to
 
 ###### To get new access token-
 
-> Go to Any Rest client and do 'get'-
+> Go to Any Rest client and do 'post' with client credentials-
 
 http://<authorization_server>/<application_context>/oauth/token?grant_type=refresh_token&refresh_token=<refresh_token_granted_in_step_2>
 
